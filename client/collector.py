@@ -28,9 +28,13 @@ class Collector:
     devices = self.scan()
     print("Result: " + str(devices) + " device(s)")
 
+    currentTime = time.time()
     dataset = {
       "devices": devices,
-      "time": time.time()
+      # TODO: Make this dynamic
+      "lon": 52.457510,
+      "lat": 13.526315,
+      "time": currentTime,
     }
 
     with open("datasets.txt", "a") as file:
