@@ -1,5 +1,7 @@
 from bluepy import btle
 from bluepy.btle import ScanEntry
+import json
+import time
 
 class Collector:
   # Corona Interest Group Identifier as described in Google's whitepaper
@@ -15,27 +17,23 @@ class Collector:
 
     for scan_entry in scan_entries:
       service = scan_entry.getValueText(ScanEntry.COMPLETE_16B_SERVICES)
-      service_identifier = service[4:8]
-      if (service_identifier == self.CORONA_INTEREST_GROUP):
-        print("Found")
+      print("Service: " + str(service))
+      if (service != None and service[4:8] == self.CORONA_INTEREST_GROUP):
         received_beacons += 1;
 
-    # for scan_entry in scan_entries:
-    #   service = scan_entry.getValueText(ScanEntry.COMPLETE_16B_SERVICES)
-    #   if service == self.CORONA_SERVICE:
-    #     data = scan_entry.getValueText(ScanEntry.SERVICE_DATA_16B)
-    #     if (
-    #       # Service data should always be 88 bytes long as it contains UUiD, RPI and AEM
-    #       len(data) == 44
-
-    #       # Make sure the interest group is the Corona Interest Group
-    #       and int(data[0:2], 16) + int(data[2:4], 16) * 0x100 == self.CORONA_INTEREST_GROUP):
-    #       received_beacons += 1;
-
-    print("Received: " + str(received_beacons))
     return received_beacons
     
   def collect(self, config):
     print("Collecting data...")
     devices = self.scan()
+    print("Result: " + str(devices) + " device(s)")
+
+    dataset = {
+      "devices": devices,
+      "time": time.time()
+    }
+
+    with open("datasets.txt", "a") as file:
+      json.dump(dataset, file)
+      file.write("\n")
     
