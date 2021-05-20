@@ -37,7 +37,7 @@ class Collector:
       "time": currentTime,
     }
 
-    with open("datasets.txt", "a") as file:
+    with open("datapoints.txt", "a") as file:
       json.dump(dataset, file)
       file.write("\n")
     

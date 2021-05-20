@@ -34,6 +34,10 @@ $router->post('/push', function (Request $request) use ($router) {
     return 1;
 });
 
+$router->get('/ping', function () use ($router) {
+    return "pong";
+});
+
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });

@@ -7,6 +7,7 @@ CWAInfo
 import os
 import configparser
 from collector import Collector
+from uploader import Uploader
 
 project_dir = os.path.dirname(__file__)
 if len(project_dir) != 0:
@@ -15,5 +16,8 @@ if len(project_dir) != 0:
 config = configparser.ConfigParser()
 config.read('config.ini')
 
-collector = Collector();
-collector.collect(config);
+collector = Collector()
+collector.collect(config)
+
+uploader = Uploader()
+uploader.upload(config)
