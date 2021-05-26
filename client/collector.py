@@ -1,5 +1,6 @@
 from bluepy import btle
 from bluepy.btle import ScanEntry
+from gps import *
 import json
 import time
 
@@ -10,6 +11,18 @@ class Collector:
 
   def __init__(self):
     self.scanner = btle.Scanner(0)
+    self.gpsd = gps(mode=WATCH_ENABLE|WATCH_NEWSTYLE)
+
+  def getPosition(self):
+    # 6 tries to get the GPS location
+    for run in range(6):
+      nx = self.gpsd.next()
+      if nx['class'] == 'TPV':
+        break;  
+    
+    latitude = getattr(nx,'lat', "0")
+    longitude = getattr(nx,'lon', "0")
+    return [latitude, longitude]
     
   def scan(self, t=5):
     scan_entries = self.scanner.scan(t)
@@ -28,12 +41,14 @@ class Collector:
     devices = self.scan()
     print("Result: " + str(devices) + " device(s)")
 
+    [latitude, longitude] = self.getPosition()
+    print("At position: " + str(latitude) + ", " + str(longitude))
+
     currentTime = time.time()
     dataset = {
       "devices": devices,
-      # TODO: Make this dynamic
-      "lon": 52.457510,
-      "lat": 13.526315,
+      "lon": longitude,
+      "lat": latitude,
       "time": currentTime,
     }
 
