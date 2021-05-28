@@ -46,10 +46,10 @@ class Collector:
 
     currentTime = time.time()
     dataset = {
-      "devices": devices,
+      "number": devices,
       "lon": longitude,
       "lat": latitude,
-      "time": currentTime,
+      "timestamp": currentTime,
     }
 
     with open("datapoints.txt", "a") as file:
