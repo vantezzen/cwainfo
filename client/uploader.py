@@ -12,10 +12,10 @@ class Uploader:
 
     with open('datapoints.txt', 'r') as f:
       for line in f:
-        if len(line.trim()) > 0:
+        if len(line.strip()) > 0:
           print("Uploading a datapoint")
           payload = json.loads(line)
-          payload.key = config['Uploader']['pushkey']
+          payload['key'] = config['Uploader']['pushkey']
           requests.post(server + "/push", data = payload)
     
     with open("datapoints.txt", "a") as f:
