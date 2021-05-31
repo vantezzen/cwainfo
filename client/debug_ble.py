@@ -9,6 +9,7 @@ import os
 import configparser
 from collector import Collector
 
+
 project_dir = os.path.dirname(__file__)
 if len(project_dir) != 0:
     project_dir += "/"
@@ -17,7 +18,9 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 
 collector = Collector()
+collected = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 while True:
   devices = collector.scan()
-  print("Devices: " + str(devices))
+  collected[devices] += 1;
+  print(collected)

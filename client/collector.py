@@ -30,7 +30,7 @@ class Collector:
 
     for scan_entry in scan_entries:
       service = scan_entry.getValueText(ScanEntry.COMPLETE_16B_SERVICES)
-      print("Service: " + str(service))
+      # print("Service: " + str(service))
       if (service != None and service[4:8] == self.CORONA_INTEREST_GROUP):
         received_beacons += 1;
 
