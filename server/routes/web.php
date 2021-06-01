@@ -24,6 +24,11 @@ $router->post('/push', function (Request $request) use ($router) {
         'timestamp' => 'required|numeric',
     ]);
 
+    $key = env('PUSH_KEY');
+    if ($request->input('key') !== $key) {
+        return "Invalid key";
+    }
+
     $dp = new Datapoint();
     $dp->number = $request->input('number');
     $dp->timestamp = date('Y-m-d H:i:s', round($request->input('timestamp')));
