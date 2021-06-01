@@ -19,6 +19,6 @@ class Uploader:
           requests.post(server + "/push", data = payload)
     
     with open("datapoints.txt", "a") as f:
-      f.truncate(20)
+      f.truncate(0)
 
     print("Upload done")
