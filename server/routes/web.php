@@ -26,7 +26,7 @@ $router->post('/push', function (Request $request) use ($router) {
 
     $dp = new Datapoint();
     $dp->number = $request->input('number');
-    $dp->timestamp = $request->input('timestamp');
+    $dp->timestamp = date('Y-m-d H:i:s', round($request->input('timestamp')));
     $dp->lat = $request->input('lat');
     $dp->lon = $request->input('lon');
     $dp->save();
