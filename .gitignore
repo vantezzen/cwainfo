@@ -1,3 +1,5 @@
 .DS_Store
 datasets.txt
 __pycache__
+*.afphoto
+*.xlsx
