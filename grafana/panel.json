@@ -20,7 +20,7 @@
   "panels": [
     {
       "circleMaxSize": 30,
-      "circleMinSize": 2,
+      "circleMinSize": "1",
       "colors": [
         "rgba(245, 54, 54, 0.9)",
         "rgba(237, 129, 40, 0.89)",
@@ -42,13 +42,13 @@
       "hideEmpty": false,
       "hideZero": false,
       "id": 2,
-      "initialZoom": 1,
+      "initialZoom": "11",
       "locationData": "table",
-      "mapCenter": "(0°, 0°)",
-      "mapCenterLatitude": 0,
-      "mapCenterLongitude": 0,
+      "mapCenter": "custom",
+      "mapCenterLatitude": "52.48",
+      "mapCenterLongitude": "13.5",
       "maxDataPoints": 1,
-      "mouseWheelZoom": false,
+      "mouseWheelZoom": true,
       "pluginVersion": "7.5.7",
       "showLegend": true,
       "stickyLabels": false,
@@ -119,6 +119,7 @@
       "type": "grafana-worldmap-panel",
       "unitPlural": "",
       "unitSingle": "",
+      "unitSingular": "",
       "valueName": "total"
     }
   ],
@@ -136,5 +137,5 @@
   "timezone": "",
   "title": "Map",
   "uid": "j7zkq9qMk",
-  "version": 2
+  "version": 3
 }
