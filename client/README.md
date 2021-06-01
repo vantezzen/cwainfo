@@ -26,5 +26,5 @@ sudo service gpsd start
 1. Prüfe, dass die GPS-Verbindung funktioniert, durch `python3 gps_test.py`
 1. Füge folgende Zeile über `crontab -e` als Cronjob hinzu:
 ```
-*/5 * * * * python3 /home/pi/cwainfo/client/main.py >/dev/null 2>&1
+*/5 * * * * cd /home/pi/cwainfo/client/ && python3 main.py >>/home/pi/cronlog 2>&1
 ```
